@@ -17,6 +17,10 @@ app.get('/index-view', (req, res) => {
   res.render('index', { name: 'hakan' })
 })
 
+app.get('/download-note', (req, res) => {
+  res.download('./notes/middleware-types.md')
+})
+
 // ----------------------------------------
 // app.get("/users", (req, res) => {
 //   res.send("get users");
