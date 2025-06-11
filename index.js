@@ -8,7 +8,8 @@ const PORT = 3000
 app.set('view engine', 'ejs')
 app.set('views', './views')
 
-app.all('/', async (req, res) => {
+app.all('/', (req, res) => {
+  console.log('redirecting all API method calls on "/" route to index view')
   res.redirect('/index-view')
 })
 
