@@ -1,9 +1,10 @@
-import { name } from 'ejs'
 import express from 'express'
 import { carsRouter } from './routes/cars.js'
 
 const app = express()
 const PORT = 3000
+
+app.use(express.urlencoded({ extended: true }))
 
 app.set('view engine', 'ejs')
 app.set('views', './views')
@@ -15,6 +16,16 @@ app.all('/', (req, res) => {
 
 app.get('/index-view', (req, res) => {
   res.render('index', { name: 'hakan' })
+})
+
+app.post('/index-view', (req, res) => {
+  const age = req.body.age
+  res.redirect(`/other-route?age=${age}`)
+})
+
+app.get('/other-route', (req, res) => {
+  const age = req.query.age
+  res.render('redirecting', { age })
 })
 
 app.get('/download-note', (req, res) => {
